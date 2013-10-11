@@ -77,6 +77,7 @@ app.get('/stagecraft-stub/*', requirejs('./support/stagecraft_stub/stagecraft_st
 app.use('/performance/', requirejs('process_request'));
 
 app.get('/_status', requirejs('healthcheck_controller'));
+app.get('/view/graph', requirejs('./spike/render_graph'));
 
 var server = http.createServer(app).listen(app.get('port'), function(){
   winston.info("Express server listening on port " + app.get('port'));
