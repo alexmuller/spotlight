@@ -78,6 +78,7 @@ app.use('/performance/', requirejs('process_request'));
 
 app.get('/_status', requirejs('healthcheck_controller'));
 app.get('/view/graph', requirejs('./spike/render_graph'));
+app.get('/view/graph.png', requirejs('./spike/render_graph_png'));
 
 var server = http.createServer(app).listen(app.get('port'), function(){
   winston.info("Express server listening on port " + app.get('port'));
