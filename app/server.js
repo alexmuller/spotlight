@@ -77,8 +77,32 @@ app.get('/stagecraft-stub/*', requirejs('./support/stagecraft_stub/stagecraft_st
 app.use('/performance/', requirejs('process_request'));
 
 app.get('/_status', requirejs('healthcheck_controller'));
+var async = requirejs('async');
+
+var renderQueue = async.queue(function (task, callback) {
+    var phantom = require('phantom');
+    var fs = require('fs');
+
+    phantom.create(function (ph) {
+      return ph.createPage(function(page) {
+        page.set('viewportSize', { width: 1000, height: 1000 });
+        return page.open(task.url, function (status) {
+            page.render('./graph.png', function () {
+              callback(null, './graph.png');
+              ph.exit();
+            });
+        });
+      });
+    });
+}, 1);
+
+
 app.get('/view/graph', requirejs('./spike/render_graph'));
-app.get('/view/graph.png', requirejs('./spike/render_graph_png'));
+app.get('/view/graph.png', function (req, res) {
+  renderQueue.push({url: 'http://localhost:3000/view/graph'}, function (err, file) {
+    res.sendfile(file);
+  });
+});
 
 var server = http.createServer(app).listen(app.get('port'), function(){
   winston.info("Express server listening on port " + app.get('port'));
