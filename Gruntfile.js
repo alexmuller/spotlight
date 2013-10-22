@@ -136,6 +136,7 @@ module.exports = function(grunt) {
     nodemon: {
       dev: {
         options: {
+          nodeArgs: ['--debug'],
           file: 'app/server.js',
           watchedExtensions: ['js'],
           watchedFolders: ['app', 'support'],
@@ -144,9 +145,16 @@ module.exports = function(grunt) {
         }
       }
     },
+    'node-inspector': {
+      dev: {
+        options: {
+          'save-live-edit': true
+        }
+      }
+    },
     concurrent: {
       dev: {
-        tasks: ['nodemon', 'watch'],
+        tasks: ['node-inspector', 'nodemon', 'watch'],
         options: {
           logConcurrentOutput: true
         }
@@ -165,7 +173,8 @@ module.exports = function(grunt) {
     'grunt-contrib-copy',
     'grunt-contrib-watch',
     'grunt-nodemon',
-    'grunt-concurrent'
+    'grunt-concurrent',
+    'grunt-node-inspector'
   ].forEach(function (task) {
     grunt.loadNpmTasks(task);
   });

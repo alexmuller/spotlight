@@ -21,9 +21,7 @@ npm install
 
 ### Development ###
 
-If you're using our dev environment then `cd /var/apps/pp-development` and
-`bowl performance`. Once you've set up your DNS, `http://spotlight.perfplat.dev`
-will work.
+If you're using our dev environment then `cd /var/apps/pp-development` and `bowl performance`. Once you've set up your DNS, `http://spotlight.perfplat.dev` will work.
 
 Otherwise...
 ```bash
@@ -31,12 +29,10 @@ cd <spotlight_dir>
 grunt
 ```
 
-This will create a development build of the assets and then run the app at
-`http://localhost:3057`.
+This will create a development build of the assets and then run the app in debug mode on port 3057.
 
 The app uses [grunt-nodemon](https://github.com/ChrisWren/grunt-nodemon) and
-[grunt-contrib-watch](https://github.com/gruntjs/grunt-contrib-watch) to monitor
-changes and automatically restart the server and recompile SASS.
+[grunt-contrib-watch](https://github.com/gruntjs/grunt-contrib-watch) to monitor changes and automatically restart the server and recompile SASS. It also starts up `node-inspector` (see [Debugging locally](#debugging-locally)).
 
 ### Running tests ###
 
@@ -61,12 +57,10 @@ When the app is running in development mode, Jasmine tests for shared components
 
 #### Debugging locally ####
 
-Install node-inspector on your VM: `sudo npm install -g node-inspector@0.5.0` and
-run it with `node-inspector`.
+`node-inspector` gets automatically installed as a dependency.
+When you start the app with `grunt`, `node-inspector` automatically gets started, too.
 
-Start the app with `node --debug app/server.js`.
-
-Visit `http://spotlight.perfplat.dev:8080` to view
+Visit `http://spotlight.perfplat.dev:8080/debug?port=5858` to view.
 
 
 ### Production ###
