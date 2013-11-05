@@ -17,11 +17,11 @@ function () {
       return page.open(task.url, function (status) {
           page.render('./graph.png', function () {
             callback('./graph.png');
-            console.log("Task processed")
+            console.log("Task processed");
           });
       });
     });
-  }
+  };
 
 }    
 );

@@ -8,6 +8,6 @@ function (baseTemplate) {
       queue.push({url: 'http://localhost:3000/view/graph'}, function (file) {
         res.sendfile(file);
       });
-    }
+    };
   };
 });
