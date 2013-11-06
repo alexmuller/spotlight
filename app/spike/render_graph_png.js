@@ -5,7 +5,7 @@ function (baseTemplate) {
 
   return function (queue) {
     return function render (req, res) {
-      queue.push({url: 'http://localhost:3000/view/graph'}, function (file) {
+      queue.push({url: 'http://localhost:3057/view/graph'}, function (file) {
         res.sendfile(file);
       });
     };

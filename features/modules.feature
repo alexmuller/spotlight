@@ -12,3 +12,8 @@ Feature: Modules
     When I go to /performance/no-realistic-dashboard/realtime
     Then I should see the "realtime" module for "no-realistic-dashboard" data
     And I should see other information for the "no-realistic-dashboard" "realtime" module
+
+  Scenario: Png module
+    When I go to /performance/no-realistic-dashboard/realtime.png?raw
+    Then I should see the png "realtime" module for "no-realistic-dashboard" data
+    And I should not see other information for the "no-realistic-dashboard" "realtime" module

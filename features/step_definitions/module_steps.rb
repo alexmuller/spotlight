@@ -4,7 +4,8 @@ def values
       'no-realistic-dashboard' => {
         title: 'Real-time usage',
         description: 'Real-time usage',
-        raw: 15
+        raw: 15,
+        image_path: "/assets/images/module_pngs/realtime.png"
       }
     }
   }
@@ -27,3 +28,7 @@ Then(/^I should see other information for the "(.*?)" "(.*?)" module$/) do |serv
   page.find(".#{display_module}").should have_content(values[display_module][service][:title])
   page.find(".#{display_module}").should have_content(values[display_module][service][:description])
 end 
+
+Then(/^I should see the png "(.*?)" module for "(.*?)" data$/) do |display_module, service|
+  page.find("img[src='#{values[display_module][service][:image_path]}']").should_not be_nil
+end
