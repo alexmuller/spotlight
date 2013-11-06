@@ -72,17 +72,20 @@ app.configure('production', function () {
   winston.remove(winston.transports.Console);
 });
 
+//
+var async = requirejs('async');
+var renderQueue = async.queue(requirejs('./spike/phantomjs_renderer'), 1);
+app.get('*.png', requirejs('./spike/render_graph_png')(renderQueue));
+
+app.get('/view/graph', requirejs('./spike/render_graph'));
+/*app.get('/view/graph.png', requirejs('./spike/render_graph_png')(renderQueue));*/
+//
+
 app.get('/stagecraft-stub/*', requirejs('./support/stagecraft_stub/stagecraft_stub_controller'));
 
 app.use('/performance/', requirejs('process_request'));
 
 app.get('/_status', requirejs('healthcheck_controller'));
-var async = requirejs('async');
-
-var renderQueue = async.queue(requirejs('./spike/phantomjs_renderer'), 1);
-
-app.get('/view/graph', requirejs('./spike/render_graph'));
-app.get('/view/graph.png', requirejs('./spike/render_graph_png')(renderQueue));
 
 var server = http.createServer(app).listen(app.get('port'), function(){
   winston.info("Express server listening on port " + app.get('port'));
