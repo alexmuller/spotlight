@@ -1,7 +1,6 @@
 define([
-  'tpl!spike/graph.html'
 ],
-function (baseTemplate) {
+function () {
 
   return function (queue) {
     return function render (req, res) {

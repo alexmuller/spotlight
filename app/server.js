@@ -74,11 +74,9 @@ app.configure('production', function () {
 
 //
 var async = requirejs('async');
-var renderQueue = async.queue(requirejs('./spike/phantomjs_renderer'), 1);
-app.get('*.png', requirejs('./spike/render_graph_png')(renderQueue));
+var renderQueue = async.queue(requirejs('./phantomjs_renderer'), 1);
+app.get('*.png', requirejs('./render_png')(renderQueue));
 
-app.get('/view/graph', requirejs('./spike/render_graph'));
-/*app.get('/view/graph.png', requirejs('./spike/render_graph_png')(renderQueue));*/
 //
 
 app.get('/stagecraft-stub/*', requirejs('./support/stagecraft_stub/stagecraft_stub_controller'));
