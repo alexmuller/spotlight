@@ -5,7 +5,7 @@ define([], function(){
       parts.splice(0,4);
       whole = parts.join("-");
       formatted_whole = whole.replace(".png", "").replace("?", "-");
-      return "public/images/" + formatted_whole + ".png";
+      return "./tmp/" + formatted_whole + ".png";
     }
   };
 
