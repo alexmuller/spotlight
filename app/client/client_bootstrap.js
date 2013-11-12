@@ -15,7 +15,13 @@ function (StagecraftApiClient, _) {
     var controller = new ControllerClass({
       model: model
     });
+
+    controller.on('ready', function () {
+      $('body').addClass('ready');
+    });
+
     controller.render({ init: true });
+
     return controller;
   };
 
