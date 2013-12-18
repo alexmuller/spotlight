@@ -52,7 +52,7 @@ function (MatrixCollection, Collection, Group) {
 
       return _.map(eventsByTimestamp, function (events) {
         return {
-          _timestamp: events[0]._timestamp,
+          _timestamp: events[0]._week_start_at,
           totalStarted: this.uniqueEventsFor(events, this.startMatcher),
           totalCompleted: this.uniqueEventsFor(events, this.endMatcher)
         };
@@ -85,13 +85,15 @@ function (MatrixCollection, Collection, Group) {
       var latestEventTimestamp = this.latest(events, function (d) {
         return this.getMoment(d._timestamp);
       });
+      console.log(latestEventTimestamp);
       var weekDates = this.weeksFrom(latestEventTimestamp, 9);
+      console.log(weekDates);
 
       var values = _.map(weekDates, function (timestamp) {
         var existingEvent = this.getEventForTimestamp(events, timestamp);
         return _.extend(config.modelAttribute(existingEvent), {
-          _start_at: timestamp.clone().add(1, 'hours'),
-          _end_at: timestamp.clone().add(1, 'hours').add(1, 'weeks')
+          _start_at: timestamp.clone(),
+          _end_at: timestamp.clone().add(1, 'weeks')
         });
       }, this);
 

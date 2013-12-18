@@ -7,6 +7,9 @@ define(["moment-timezone"], function (moment) {
                 "1 - BST 1971_9_31_2",
                 "0 GB-Eire %s 1996",
                 "0 EU GMT/BST"
+            ],
+            "Etc/UTC": [
+                "0 - UTC"
             ]
         },
         "rules": {
@@ -84,7 +87,8 @@ define(["moment-timezone"], function (moment) {
                 "1979 1995 8 0 8 1 1 0",
                 "1981 9999 2 0 8 1 1 1 S",
                 "1996 9999 9 0 8 1 1 0"
-            ]
+            ],
+            "Etc/UTC": []
         },
         "links": {}
     });

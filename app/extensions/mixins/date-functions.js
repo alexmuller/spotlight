@@ -47,7 +47,8 @@ function (moment) {
     moment: moment,
 
     getMoment: function () {
-      return this.moment.apply(null, arguments).tz('Europe/London');
+      console.log(this.moment.apply(null, arguments).tz('Etc/UTC'));
+      return this.moment.apply(null, arguments).tz('Etc/UTC');
     },
 
     latest: function (objects, filter) {
