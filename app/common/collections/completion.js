@@ -42,17 +42,7 @@ function (MatrixCollection, Collection, Group) {
     },
 
     getEventForTimestamp: function (events, timestamp) {
-      console.log("THE EVENTS");
-      console.log(events);
-      console.log("THE EVENTS");
       return _.find(events, function (d) {
-        console.log("FROM RESPONSE");
-        console.log(d._timestamp);
-        console.log(this.getMoment(d._timestamp));
-        console.log(this.getMoment(d._timestamp).format());
-        console.log("GEN BY WEEKS BACK");
-        console.log(timestamp);
-        console.log(timestamp.format());
         return this.getMoment(d._timestamp).isSame(timestamp);
       }, this);
     },
@@ -96,15 +86,9 @@ function (MatrixCollection, Collection, Group) {
         return this.getMoment(d._timestamp);
       });
       var weekDates = this.weeksFrom(latestEventTimestamp, 9);
-      console.log("WEEK DATEs");
-      console.log(weekDates);
-      console.log("WEEK DATEs");
 
       var values = _.map(weekDates, function (timestamp) {
-        console.log("COMPARE");
         var existingEvent = this.getEventForTimestamp(events, timestamp);
-        console.log(existingEvent);
-        console.log("COMPARE");
         return _.extend(config.modelAttribute(existingEvent), {
           _start_at: timestamp.clone(),
           _end_at: timestamp.clone().add(1, 'weeks')

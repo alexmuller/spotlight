@@ -47,10 +47,6 @@ function (moment) {
     moment: moment,
 
     getMoment: function () {
-      /*console.log(this.moment());*/
-      /*console.log(arguments);*/
-      /*console.log(this.moment.apply(null, arguments).tz('Africa/Dakar'));*/
-      /*return this.moment.apply(null, arguments).tz('Africa/Dakar');*/
       return this.moment.apply(null, arguments).tz('Europe/London');
     },
 
