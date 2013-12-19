@@ -90,8 +90,8 @@ function (MatrixCollection, Collection, Group) {
       var values = _.map(weekDates, function (timestamp) {
         var existingEvent = this.getEventForTimestamp(events, timestamp);
         return _.extend(config.modelAttribute(existingEvent), {
-          _start_at: timestamp.clone(),
-          _end_at: timestamp.clone().add(1, 'weeks')
+          _start_at: timestamp.clone().add(1, 'hours'),
+          _end_at: timestamp.clone().add(1, 'hours').add(1, 'weeks')
         });
       }, this);
 
