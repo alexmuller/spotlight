@@ -27,12 +27,9 @@ function (Model) {
         var endAt = period.boundary(this.getMoment());
         endAt.subtract(getAndDelete(attrs, 'ago', 0), period.unit);
         var duration = getAndDelete(attrs, 'duration', null) || period.duration;
-        console.log("pre subtract end at");
         var startAt = endAt.clone().subtract(
           duration, period.unit
         );
-        console.log("post subtract start at");
-        console.log(startAt);
         _.extend(attrs, {
           end_at: endAt,
           start_at: startAt
@@ -46,8 +43,6 @@ function (Model) {
       hour: {
         unit: 'hours',
         boundary: function (date) {
-          console.log('hour');
-          console.log(date.startOf('hour'));
           return date.startOf('hour');
         },
         duration: 24
@@ -55,8 +50,6 @@ function (Model) {
       day: {
         unit: 'days',
         boundary: function (date) {
-          console.log('day');
-          console.log(date.startOf('day'));
           return date.startOf('day');
         },
         duration: 30
@@ -64,8 +57,6 @@ function (Model) {
       week: {
         unit: 'weeks',
         boundary: function (date) {
-          console.log('week');
-          console.log(date.day(1).startOf('day'));
           return date.day(1).startOf('day');
         },
         duration: 9
@@ -73,8 +64,6 @@ function (Model) {
       month: {
         unit: 'months',
         boundary: function (date) {
-          console.log('month');
-          console.log(date.startOf('month'));
           return date.startOf('month');
         },
         duration: 12
@@ -82,9 +71,7 @@ function (Model) {
       quarter: {
         unit: 'months',
         boundary: function (date) {
-          console.log('months');
           var quarterAdjustment = (date.month() % 4) + 1;
-          console.log(date.subtract({months: quarterAdjustment}).startOf('month'));
           return date.subtract({months: quarterAdjustment}).startOf('month');
         },
         duration: 24 * 4

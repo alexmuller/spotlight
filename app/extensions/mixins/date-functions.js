@@ -47,8 +47,11 @@ function (moment) {
     moment: moment,
 
     getMoment: function () {
-      console.log(this.moment.apply(null, arguments).tz('Etc/UTC'));
-      return this.moment.apply(null, arguments).tz('Etc/UTC');
+      /*console.log(this.moment());*/
+      /*console.log(arguments);*/
+      /*console.log(this.moment.apply(null, arguments).tz('Africa/Dakar'));*/
+      /*return this.moment.apply(null, arguments).tz('Africa/Dakar');*/
+      return this.moment.apply(null, arguments).tz('Europe/London');
     },
 
     latest: function (objects, filter) {

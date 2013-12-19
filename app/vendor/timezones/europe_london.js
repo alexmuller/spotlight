@@ -1,15 +1,17 @@
 define(["moment-timezone"], function (moment) {
     moment.tz.add({
         "zones": {
+            "Africa/Dakar": [
+                "-1:9:44 - LMT 1912 -1:9:44",
+                "-1 - WAT 1941_5 -1",
+                "0 - GMT"
+            ],
             "Europe/London": [
                 "-0:1:15 - LMT 1847_11_1_0 -0:1:15",
                 "0 GB-Eire %s 1968_9_27 1",
                 "1 - BST 1971_9_31_2",
                 "0 GB-Eire %s 1996",
                 "0 EU GMT/BST"
-            ],
-            "Etc/UTC": [
-                "0 - UTC"
             ]
         },
         "rules": {
@@ -87,8 +89,7 @@ define(["moment-timezone"], function (moment) {
                 "1979 1995 8 0 8 1 1 0",
                 "1981 9999 2 0 8 1 1 1 S",
                 "1996 9999 9 0 8 1 1 0"
-            ],
-            "Etc/UTC": []
+            ]
         },
         "links": {}
     });
